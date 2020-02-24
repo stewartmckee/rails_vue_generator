@@ -42,9 +42,6 @@ module RailsVueGenerator
         lines << "    const result = await api.#{model_name}.create(data)"
         lines << '    const responseData = result.data'
         lines << "    commit('store#{model_name.titleize}', responseData)"
-        lines << "    console.log()"
-        lines << "    router.push({name: '#{model_name}', params: {id: responseData.id}})"
-
         lines << '    return responseData'
         lines << '  },'
         lines << '  async update({commit}, {id, data}) {'
@@ -53,14 +50,12 @@ module RailsVueGenerator
         lines << '    const responseData = result.data'
         lines << "    commit('store#{model_name.titleize}', responseData)"
         lines << "    commit('endLoading', 'current')"
-        lines << "    router.push({name: '#{model_name}', params: {id: responseData.id}})"
         lines << '    return responseData'
         lines << '  },'
         lines << '  async delete({commit}, id) {'
         lines << "    const result = await api.#{model_name}.delete(id)"
         lines << '    const responseData = result.data'
         lines << "    commit('clearCurrent')"
-        lines << "    router.push({name: '#{model_name.pluralize}', params: {id: responseData.id}})"
         lines << '    return responseData'
         lines << '  },'
         lines << '  clearCurrent({commit}) {'

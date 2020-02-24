@@ -41,7 +41,7 @@ module RailsVueGenerator
         lines << "  },"
         lines << "  methods: {"
         lines << "    deleteRecord() {"
-        lines << "      this.$store.dispatch('#{model_name}/delete', this.#{model_name}.id)"
+        lines << "      this.$store.dispatch('#{model_name}/delete', this.#{model_name}.id).then(function(response) {this.$router.push({name: '#{model_name.pluralize}'})}.bind(this))""
         lines << "    }"
         lines << "  }"
         lines << "};"
