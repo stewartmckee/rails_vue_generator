@@ -75,7 +75,7 @@ module RailsVueGenerator
         lines << "        this.$store.dispatch('#{model_name}/update', {id, data}).then(function(response) {this.$router.push({name: '#{model_name}', params: {id: response.id}})}.bind(this))"
         lines << '      } else {'
         lines << "        console.log(\"updating \", this.#{model_name})"
-        lines << "        this.$store.dispatch('#{model_name}/create', this.#{model_name}).then(function(response) {this.$router.push({name: '#{model_name}', params: {id: response.id}})}.bind(this))""
+        lines << "        this.$store.dispatch('#{model_name}/create', this.#{model_name}).then(function(response) {this.$router.push({name: '#{model_name}', params: {id: response.id}})}.bind(this))"
         lines << '      }'
         lines << '    }'
         lines << '  },'
