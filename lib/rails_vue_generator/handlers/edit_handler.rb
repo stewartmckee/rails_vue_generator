@@ -44,7 +44,7 @@ module RailsVueGenerator
           edit_form_lines << '</div>'
         end
         edit_form_lines << "<div>"
-        edit_form_lines << "<a href='#' class='btn btn-primary' @click=\"save\">Save Changes</a> "
+        edit_form_lines << "<a href='#' class='btn btn-primary' @click=\"save\">Save Changes</a>"
         edit_form_lines << "<router-link :to=\"{name: '#{model_name.pluralize}'}\">Back</router-link>"
         edit_form_lines << '</div>'
         edit_form_lines << '</div>'
@@ -57,24 +57,26 @@ module RailsVueGenerator
         lines = []
 
         lines << '<script>'
-        lines << "  import {mapState} from 'vuex'"
-        lines << '  export default {'
-        lines << "    name: '#{model_name}-edit',"
-        lines << '  computed:{'
+        lines << "import {mapState} from 'vuex'"
+        lines << 'export default {'
+        lines << "  name: '#{model_name}-edit',"
+        lines << '  computed: {'
         lines << '    ...mapState({'
         lines << "      #{model_name}: state => state.#{model_name}.current,"
         lines << "      loading: state => state.#{model_name}.loading.current"
-        lines << '    }),'
+        lines << '    })'
         lines << '  },'
         lines << '  methods: {'
-        lines << '    save(){'
+        lines << '    save() {'
         lines << "      const data = this.#{model_name}"
         lines << "      if (this.#{model_name}.id !== undefined) {"
         lines << "        const id = this.#{model_name}.id"
-        lines << "        console.log(\"updating \", this.#{model_name})"
-        lines << "        this.$store.dispatch('#{model_name}/update', {id, data}).then(function(response) {this.$router.push({name: '#{model_name}', params: {id: response.id}})}.bind(this))"
+        lines << "        this.$store.dispatch('#{model_name}/update', {id, data}).then("
+        lines << "          function(response) {"
+        lines << "            this.$router.push({name: '#{model_name}', params: {id: response.id}})"
+        lines << "          }.bind(this)"
+        lines << "        )"
         lines << '      } else {'
-        lines << "        console.log(\"updating \", this.#{model_name})"
         lines << "        this.$store.dispatch('#{model_name}/create', this.#{model_name}).then(function(response) {this.$router.push({name: '#{model_name}', params: {id: response.id}})}.bind(this))"
         lines << '      }'
         lines << '    }'
@@ -86,7 +88,7 @@ module RailsVueGenerator
         lines << "      this.$store.dispatch('#{model_name}/clearCurrent', this.$route.params.id)"
         lines << "    }"
         lines << '  }'  
-        lines << '};'
+        lines << '}'
         lines << '</script>'
         lines.join("\n")
       end

@@ -8,7 +8,15 @@ module RailsVueGenerator
 
     def generate
       FileUtils.mkdir_p(@options[:path])
-      File.write(File.join(@options[:path], @options[:filename]), "<template><div>" + models.map { |model| Handlers::NavigationHandler.new(model).generate }.join("\n") + "</div></template>")
+
+      nav_text = []
+      nav_text << "<template>"
+      nav_text << "  <div>"
+      nav_text << models.map { |model| "    #{Handlers::NavigationHandler.new(model).generate}" }.join("\n")
+      nav_text << "  </div>"
+      nav_text << "</template>"
+
+      File.write(File.join(@options[:path], @options[:filename]), nav_text.join)
     end
   end
 end

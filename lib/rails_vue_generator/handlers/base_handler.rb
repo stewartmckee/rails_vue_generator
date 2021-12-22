@@ -16,7 +16,7 @@ module RailsVueGenerator
         lines << template
         lines << script
         lines << style
-        lines.join("\n\n")
+        lines.join("\n\n") + "\n"
       end
     end
   end

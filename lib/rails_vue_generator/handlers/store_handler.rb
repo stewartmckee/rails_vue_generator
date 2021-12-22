@@ -6,7 +6,6 @@ module RailsVueGenerator
       def generate
         lines = []
         lines << "import api from '@/api'"
-        lines << "import router from '@/router'"
         lines << ''
         lines << 'const state = {'
         lines << '  current: {},'
@@ -59,7 +58,7 @@ module RailsVueGenerator
         lines << '    return responseData'
         lines << '  },'
         lines << '  clearCurrent({commit}) {'
-        lines << '    commit("clearCurrent")'
+        lines << "    commit('clearCurrent')"
         lines << '  }'
         lines << ''
         lines << '}'

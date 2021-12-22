@@ -4,7 +4,7 @@ module RailsVueGenerator
   class Generator
     ROOT_PATH = File.join(Dir.getwd, "vue_example")
 
-    def generate
+    def self.generate
       ModelGenerator.new.generate
 
       RouterGenerator.new.generate

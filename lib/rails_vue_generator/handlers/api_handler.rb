@@ -5,16 +5,16 @@ module RailsVueGenerator
 
       def generate
         lines = []
-        lines << "import axios from 'axios';"
+        lines << "import axios from 'axios'"
         lines << ""
-        lines << "export     const HTTP = axios.create({"
+        lines << "export const HTTP = axios.create({"
         lines << "  baseURL: process.env.VUE_APP_API_ENDPOINT || 'http://localhost:3000'"
         lines << "})"
         lines << ""
         lines << "export default {"
 
         lines << "  async getAll() {"
-        lines << "    const response = await HTTP.get(`/#{model_name.pluralize}`)"
+        lines << "    const response = await HTTP.get('/#{model_name.pluralize}')"
         lines << "    return response"
         lines << "  },"
 
@@ -24,7 +24,7 @@ module RailsVueGenerator
         lines << "  },"
         
         lines << "  async create(data) {"
-        lines << "    const response = await HTTP.post(`/#{model_name.pluralize}`, {#{model_name}: data})"
+        lines << "    const response = await HTTP.post('/#{model_name.pluralize}`, {#{model_name}: data})"
         lines << "    return response"
         lines << "  },"
         
@@ -39,6 +39,7 @@ module RailsVueGenerator
         lines << "  }"
         
         lines << "}"
+        lines << ""
 
         lines.join("\n")
       end
